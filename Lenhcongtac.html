@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Phiếu Lệnh Công Tác</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 900px; margin: auto; padding: 20px; border: 1px solid #ccc; }
+        h2, h3 { text-align: center; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input[type="text"], input[type="number"], textarea, select {
+            width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ddd;
+        }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        .signature-field { width: 30%; float: right; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>LỆNH CÔNG TÁC</h2>
+        <form id="lenhCongTacForm">
+
+            <h3>A. Phần lưu giữ của Người ra lệnh [cite: 2]</h3>
+            <label for="donViCapLenh_A">Tên Đơn vị cấp lệnh:</label>
+            <input type="text" id="donViCapLenh_A" required>
+            <label for="soLenh_A">Số Lệnh:</label>
+            <input type="text" id="soLenh_A" required>
+
+            <h4>Nội dung lệnh:</h4>
+            <label for="nguoiChiHuy_A">1. Người chỉ huy trực tiếp (Người thi hành lệnh):</label>
+            <input type="text" id="nguoiChiHuy_A" required>
+            <label for="bacATD_A">Bậc ATĐ (VD: 3/5):</label>
+            <input type="text" id="bacATD_A" required>
+
+            <label for="nhanVien_A">2. Nhân viên đơn vị công tác, gồm: (người)</label>
+            <input type="number" id="nhanVien_A" required>
+            <label for="thuocDonVi_A">Thuộc (Công ty, Phân xưởng v.v):</label>
+            <input type="text" id="thuocDonVi_A" required>
+
+            <h4>Danh sách nhân viên đơn vị công tác:</h4>
+            <table>
+                <thead>
+                    <tr><th>TT</th><th>Họ, tên</th><th>Bậc ATĐ</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" name="nhanVienTen_A_1"></td>
+                        <td><input type="text" name="nhanVienATD_A_1" placeholder="/5"></td>
+                    </tr>
+                    <tr>
+                        <td>...</td>
+                        <td><input type="text" name="nhanVienTen_A_2"></td>
+                        <td><input type="text" name="nhanVienATD_A_2" placeholder="/5"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <label for="diaDiem_A">3. Địa điểm (hoặc thiết bị) tiến hành công tác:</label>
+            <textarea id="diaDiem_A" rows="2" required></textarea> [cite: 3]
+
+            <label for="noiDung_A">4. Nội dung công tác:</label>
+            <textarea id="noiDung_A" rows="3" required></textarea> [cite: 4]
+
+            <label for="dieuKienATD_A">5. Điều kiện về an toàn điện để tiến hành công việc:</label>
+            <textarea id="dieuKienATD_A" rows="3" required></textarea> [cite: 5]
+
+            <label for="thoiGianBatDau_A">6. Thời gian bắt đầu làm việc (VD: 07 giờ 30 phút, ngày 16/12/2025):</label>
+            <input type="text" id="thoiGianBatDau_A" required> [cite: 6]
+
+            <div class="signature-field">
+                <label>Người ra lệnh công tác (ký, ghi họ, tên):</label>
+                <input type="text" id="nguoiRaLenh_A_Ky">
+            </div>
+            
+            <div style="clear: both; padding-top: 50px;"></div>
+
+            <h3>B. Phần giao cho Người chỉ huy trực tiếp (Người thi hành lệnh) [cite: 3]</h3>
+            
+            <label for="nguoiChiHuy_B">1.1. Người chỉ huy trực tiếp (Người thi hành lệnh):</label>
+            <input type="text" id="nguoiChiHuy_B" required>
+            <label for="bacATD_B">Bậc ATĐ (VD: 3/5):</label>
+            <input type="text" id="bacATD_B" required> [cite: 4]
+
+
+            <button type="submit">Lưu Lệnh Công Tác</button>
+        </form>
+        
+        <div id="statusMessage" style="margin-top: 20px; color: green;"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
