@@ -5,69 +5,84 @@
     <title>Phiếu Lệnh Công Tác</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
-        .container { max-width: 900px; margin: auto; padding: 20px; border: 1px solid #ccc; }
-        h2, h3 { text-align: center; }
+        .container { max-width: 1000px; margin: auto; padding: 20px; border: 1px solid #ccc; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        h2, h3 { text-align: center; color: #333; }
         label { display: block; margin-top: 10px; font-weight: bold; }
         input[type="text"], input[type="number"], textarea, select {
-            width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ddd;
+            width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 5px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px;
         }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        .signature-field { width: 30%; float: right; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        .signature-field { width: 35%; float: right; margin-top: 20px; text-align: center; }
+        .section-header { margin-top: 30px; border-bottom: 2px solid #555; padding-bottom: 5px; }
+        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px; }
+        button:hover { background-color: #0056b3; }
+        .view-link { display: block; text-align: center; margin-top: 15px; }
+        table input { margin: 0; padding: 5px; border: 1px solid #eee; }
+        .table-note { font-size: 0.8em; color: #666; margin-top: 5px; }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>LỆNH CÔNG TÁC</h2>
+        
+        <div class="view-link">
+            <a href="view.html">Xem Danh Sách Lệnh Công Tác Đã Lưu</a>
+        </div>
+
         <form id="lenhCongTacForm">
 
-            <h3>A. Phần lưu giữ của Người ra lệnh [cite: 2]</h3>
+            <h3 class="section-header">A. Phần lưu giữ của Người ra lệnh</h3>
+            
             <label for="donViCapLenh_A">Tên Đơn vị cấp lệnh:</label>
             <input type="text" id="donViCapLenh_A" required>
             <label for="soLenh_A">Số Lệnh:</label>
             <input type="text" id="soLenh_A" required>
 
             <h4>Nội dung lệnh:</h4>
+            
             <label for="nguoiChiHuy_A">1. Người chỉ huy trực tiếp (Người thi hành lệnh):</label>
             <input type="text" id="nguoiChiHuy_A" required>
             <label for="bacATD_A">Bậc ATĐ (VD: 3/5):</label>
             <input type="text" id="bacATD_A" required>
 
             <label for="nhanVien_A">2. Nhân viên đơn vị công tác, gồm: (người)</label>
-            <input type="number" id="nhanVien_A" required>
+            <input type="number" id="nhanVien_A" value="2" required>
             <label for="thuocDonVi_A">Thuộc (Công ty, Phân xưởng v.v):</label>
             <input type="text" id="thuocDonVi_A" required>
 
-            <h4>Danh sách nhân viên đơn vị công tác:</h4>
+            <h4>Danh sách nhân viên đơn vị công tác (Mục A):</h4>
             <table>
                 <thead>
                     <tr><th>TT</th><th>Họ, tên</th><th>Bậc ATĐ</th></tr>
                 </thead>
-                <tbody>
+                <tbody id="nhanVienList_A">
                     <tr>
                         <td>1</td>
-                        <td><input type="text" name="nhanVienTen_A_1"></td>
-                        <td><input type="text" name="nhanVienATD_A_1" placeholder="/5"></td>
+                        <td><input type="text" class="nhanVienTen_A" data-index="1"></td>
+                        <td><input type="text" class="nhanVienATD_A" data-index="1" placeholder="/5"></td>
                     </tr>
                     <tr>
-                        <td>...</td>
-                        <td><input type="text" name="nhanVienTen_A_2"></td>
-                        <td><input type="text" name="nhanVienATD_A_2" placeholder="/5"></td>
+                        <td>2</td>
+                        <td><input type="text" class="nhanVienTen_A" data-index="2"></td>
+                        <td><input type="text" class="nhanVienATD_A" data-index="2" placeholder="/5"></td>
                     </tr>
                 </tbody>
             </table>
+            <p class="table-note">*(Bạn có thể tăng số lượng nhân viên ở trên để thêm dòng nhập liệu)*</p>
 
             <label for="diaDiem_A">3. Địa điểm (hoặc thiết bị) tiến hành công tác:</label>
-            <textarea id="diaDiem_A" rows="2" required></textarea> [cite: 3]
+            <textarea id="diaDiem_A" rows="2" required></textarea>
 
             <label for="noiDung_A">4. Nội dung công tác:</label>
-            <textarea id="noiDung_A" rows="3" required></textarea> [cite: 4]
+            <textarea id="noiDung_A" rows="3" required></textarea>
 
             <label for="dieuKienATD_A">5. Điều kiện về an toàn điện để tiến hành công việc:</label>
-            <textarea id="dieuKienATD_A" rows="3" required></textarea> [cite: 5]
+            <textarea id="dieuKienATD_A" rows="3" required></textarea>
 
             <label for="thoiGianBatDau_A">6. Thời gian bắt đầu làm việc (VD: 07 giờ 30 phút, ngày 16/12/2025):</label>
-            <input type="text" id="thoiGianBatDau_A" required> [cite: 6]
+            <input type="text" id="thoiGianBatDau_A" required>
 
             <div class="signature-field">
                 <label>Người ra lệnh công tác (ký, ghi họ, tên):</label>
@@ -76,20 +91,178 @@
             
             <div style="clear: both; padding-top: 50px;"></div>
 
-            <h3>B. Phần giao cho Người chỉ huy trực tiếp (Người thi hành lệnh) [cite: 3]</h3>
+            <h3 class="section-header">B. Phần giao cho Người chỉ huy trực tiếp (Người thi hành lệnh)</h3>
             
             <label for="nguoiChiHuy_B">1.1. Người chỉ huy trực tiếp (Người thi hành lệnh):</label>
             <input type="text" id="nguoiChiHuy_B" required>
             <label for="bacATD_B">Bậc ATĐ (VD: 3/5):</label>
-            <input type="text" id="bacATD_B" required> [cite: 4]
+            <input type="text" id="bacATD_B" required>
 
+            <label for="nhanVienSoLuong_B">1.2. Nhân viên đơn vị công tác, gồm: (người)</label>
+            <input type="number" id="nhanVienSoLuong_B" value="2" required>
+            <label for="thuocDonVi_B">Thuộc (Công ty, Phân xưởng v.v):</label>
+            <input type="text" id="thuocDonVi_B" required>
+
+            <h4>Danh sách nhân viên đơn vị công tác và thay đổi người (Mục B):</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">TT</th>
+                        <th rowspan="2">Họ, tên</th>
+                        <th rowspan="2">Bậc ATĐ</th>
+                        <th colspan="2">Đến làm việc</th>
+                        <th colspan="2">Rút khỏi</th>
+                    </tr>
+                    <tr>
+                        <th>Thời gian</th>
+                        <th>Ký tên</th>
+                        <th>Thời gian</th>
+                        <th>Ký tên</th>
+                    </tr>
+                </thead>
+                <tbody id="nhanVienList_B">
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" class="nhanVienTen_B" data-index="1"></td>
+                        <td><input type="text" class="nhanVienATD_B" data-index="1" placeholder="/5"></td>
+                        <td><input type="text" class="nhanVienDenThoiGian_B" data-index="1" placeholder="7h30"></td>
+                        <td><input type="text" class="nhanVienDenKyTen_B" data-index="1" placeholder="A"></td>
+                        <td><input type="text" class="nhanVienRutThoiGian_B" data-index="1" placeholder="9h00"></td>
+                        <td><input type="text" class="nhanVienRutKyTen_B" data-index="1" placeholder="A"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" class="nhanVienTen_B" data-index="2"></td>
+                        <td><input type="text" class="nhanVienATD_B" data-index="2" placeholder="/5"></td>
+                        <td><input type="text" class="nhanVienDenThoiGian_B" data-index="2" placeholder="7h30"></td>
+                        <td><input type="text" class="nhanVienDenKyTen_B" data-index="2" placeholder="B"></td>
+                        <td><input type="text" class="nhanVienRutThoiGian_B" data-index="2" placeholder="16h00"></td>
+                        <td><input type="text" class="nhanVienRutKyTen_B" data-index="2" placeholder="B"></td>
+                    </tr>
+                </tbody>
+            </table>
 
             <button type="submit">Lưu Lệnh Công Tác</button>
         </form>
         
-        <div id="statusMessage" style="margin-top: 20px; color: green;"></div>
+        <div id="statusMessage" style="margin-top: 20px; font-weight: bold;"></div>
     </div>
 
-    <script src="app.js"></script>
-</body>
-</html>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <script>
+        // --- [Placeholder] CẤU HÌNH FIREBASE ---
+        // BẠN PHẢI THAY THẾ CHÚNG BẰNG CẤU HÌNH THỰC TẾ CỦA BẠN.
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY", 
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Khởi tạo Firebase và Firestore
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Hàm thu thập dữ liệu bảng nhân viên
+        function collectPersonnelData(tableId) {
+            const rows = document.querySelectorAll(`#${tableId} tr`);
+            const personnel = [];
+            rows.forEach(row => {
+                const tableSuffix = tableId.slice(-1);
+                const nameInput = row.querySelector(`.nhanVienTen_${tableSuffix}`);
+                
+                // Chỉ lấy dữ liệu nếu Tên nhân viên được nhập
+                if (nameInput && nameInput.value.trim() !== "") {
+                     const data = {};
+                     data.hoTen = nameInput.value;
+                     data.bacATD = row.querySelector(`.nhanVienATD_${tableSuffix}`).value;
+                     
+                     // Trường chi tiết chỉ có trong B
+                     if (tableSuffix === 'B') {
+                         data.denThoiGian = row.querySelector('.nhanVienDenThoiGian_B').value;
+                         data.denKyTen = row.querySelector('.nhanVienDenKyTen_B').value;
+                         data.rutThoiGian = row.querySelector('.nhanVienRutThoiGian_B').value;
+                         data.rutKyTen = row.querySelector('.nhanVienRutKyTen_B').value;
+                     }
+                     personnel.push(data);
+                }
+            });
+            return personnel;
+        }
+
+        document.getElementById('lenhCongTacForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.textContent = 'Đang lưu dữ liệu...';
+            statusMessage.style.color = 'blue';
+
+            // 1. Thu thập dữ liệu
+            const formData = {
+                // PHẦN A
+                A_donViCapLenh: document.getElementById('donViCapLenh_A').value,
+                A_soLenh: document.getElementById('soLenh_A').value,
+                A_nguoiChiHuy: document.getElementById('nguoiChiHuy_A').value,
+                A_bacATD: document.getElementById('bacATD_A').value,
+                A_nhanVienSoLuong: document.getElementById('nhanVien_A').value,
+                A_thuocDonVi: document.getElementById('thuocDonVi_A').value,
+                A_diaDiem: document.getElementById('diaDiem_A').value,
+                A_noiDung: document.getElementById('noiDung_A').value,
+                A_dieuKienATD: document.getElementById('dieuKienATD_A').value,
+                A_thoiGianBatDau: document.getElementById('thoiGianBatDau_A').value,
+                A_nguoiRaLenh_Ky: document.getElementById('nguoiRaLenh_A_Ky').value,
+                A_danhSachNhanVien: collectPersonnelData('nhanVienList_A'), 
+
+                // PHẦN B
+                B_nguoiChiHuy: document.getElementById('nguoiChiHuy_B').value,
+                B_bacATD: document.getElementById('bacATD_B').value,
+                B_nhanVienSoLuong: document.getElementById('nhanVienSoLuong_B').value,
+                B_thuocDonVi: document.getElementById('thuocDonVi_B').value,
+                B_danhSachNhanVien: collectPersonnelData('nhanVienList_B'),
+
+                // Dấu thời gian lưu trữ
+                ngayLuu: new Date().toISOString()
+            };
+            
+            // 2. Gửi dữ liệu lên Firebase
+            db.collection("LenhCongTac").add(formData)
+                .then((docRef) => {
+                    statusMessage.textContent = `Lệnh công tác đã được lưu thành công! ID: ${docRef.id}`;
+                    statusMessage.style.color = 'green';
+                    e.target.reset(); // Xóa form sau khi gửi
+                })
+                .catch((error) => {
+                    statusMessage.textContent = "Lỗi khi lưu dữ liệu: " + error.message;
+                    statusMessage.style.color = 'red';
+                    console.error("Lỗi:", error);
+                });
+        });
+        
+        // Logic đơn giản để thêm/xóa dòng nhập liệu dựa trên số lượng nhân viên
+        function updatePersonnelTable(inputElementId, tableId) {
+            const input = document.getElementById(inputElementId);
+            const tableBody = document.getElementById(tableId);
+            
+            if (!input || !tableBody) return;
+            
+            input.addEventListener('change', function() {
+                const currentRows = tableBody.children.length;
+                const requiredRows = parseInt(this.value) || 0;
+                
+                if (requiredRows > currentRows) {
+                    for (let i = currentRows + 1; i <= requiredRows; i++) {
+                        const newRow = tableBody.insertRow();
+                        const tableSuffix = tableId.slice(-1);
+                        newRow.innerHTML = `
+                            <td>${i}</td>
+                            <td><input type="text" class="nhanVienTen_${tableSuffix}" data-index="${i}"></td>
+                            <td><input type="text" class="nhanVienATD_${tableSuffix}" data-index="${i}" placeholder="/5"></td>
+                            ${tableSuffix === 'B' ? `
+                                <td><input type="text" class="nhanVienDenThoiGian_${tableSuffix}" data-index="${i}"></td>
+                                <td><input type="text" class="nhanVienDenKyTen_${tableSuffix}" data-index="${i}"></td>
+                                <td><input type="text" class="nhanVienRutThoiGian_${tableSuffix}" data-index="${i}"></td>
+                                <td><input type="text" class="nhanVienRutKyTen_${tableSuffix}" data-index="${i}"></td>
